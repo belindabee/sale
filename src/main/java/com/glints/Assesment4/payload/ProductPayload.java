@@ -5,33 +5,49 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glints.Assesment4.model.Product;
 
 import lombok.Data;
 
-@Data
 public class ProductPayload {
-
-	@NotBlank(message = "Product name is required!")
-	@Size(min=3, message = "Product name min 3 Characters!")
-	private String ProductName;
+	@JsonProperty("name")
+	private String name;
+	@JsonProperty("price")
+	private long price;
+	@JsonProperty("quantity")
+	private int quantity;
+	@JsonProperty("re_order_level")
+	private int re_order_level;
+	@JsonProperty("supplier_name")
+	private String supplierName;
 	
-	@NotNull(message = "price is required")
-	private Integer price;
-	
-	@NotNull(message = "Product status is required!")
-	private Product.ProductStatus productStatus;
-	
-	@Min(1)
-	private Integer supplierid;
-	
-	public String getProductName() {
-		return ProductName;
+	public ProductPayload(String name, long price, int quantity, int re_order_level, String supplierName) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.re_order_level = re_order_level;
+		this.supplierName = supplierName;
 	}
-	public Integer getPrice() {
+
+	public String getName() {
+		return name;
+	}
+
+	public long getPrice() {
 		return price;
 	}
-	public Integer getQuantity(quantity) {
+
+	public int getQuantity() {
 		return quantity;
+	}
+
+	public int getRe_order_level() {
+		return re_order_level;
+	}
+
+	public String getSupplierName() {
+		return supplierName;
 	}
 }
